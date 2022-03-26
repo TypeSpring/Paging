@@ -22,7 +22,7 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public List<PostDto> getPosts(@PageableDefault(size = 10, page = 0, sort = "create_date", direction = Direction.DESC) Pageable pageable) {
+    public List<PostDto> getPosts(@PageableDefault(size = 12, page = 0, sort = "create_date", direction = Direction.DESC) Pageable pageable) {
         return postService.getPosts(pageable);
     }
 }

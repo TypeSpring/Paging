@@ -20,6 +20,7 @@ public class PostService {
     private final PostRepository postRepository;
 
     public List<PostDto> getPosts(Pageable pageable) {
+        postRepository.findByPage(pageable);
         return List.of(new PostDto());
     }
 }
