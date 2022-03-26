@@ -2,6 +2,7 @@ package com.example.paging.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PostService {
     private final PostRepository postRepository;
 
-    public List<PostDto> getPosts(Pageable pageable) {
-        postRepository.findByPage(pageable);
-        return List.of(new PostDto());
+    public Page<PostDto> getPosts(Pageable pageable) {
+        return postRepository.search(pageable);
     }
 }

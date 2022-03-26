@@ -16,4 +16,4 @@ spring:
 
 fake:
   api:
-    appId: {여기에 https://dummyapi.io/docs 앱 아이디를 입력하세요}
+    appId: {여기에 https://dummyapi.io 앱 아이디를 입력하세요}
