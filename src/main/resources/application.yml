@@ -16,4 +16,4 @@ spring:
 
 fake:
   api:
-    appId: 623f211a5599137c08cef1e3
+    appId: {여기에 https://dummyapi.io 앱 아이디를 입력하세요}
