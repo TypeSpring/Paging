@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,5 +23,9 @@ public class PostService {
 
     public Page<PostDto> getPosts(Pageable pageable) {
         return postRepository.search(pageable);
+    }
+
+    public Slice<PostDto> getPostsV2(Pageable pageable) {
+        return postRepository.searchV2(pageable);
     }
 }
