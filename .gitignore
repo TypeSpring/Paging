@@ -6,7 +6,7 @@ build/
 !**/src/test/**/build/
 /node_modules
 **/generated
-**/application-local.yml
+resource/application-local.yml
 
 ### STS ###
 .apt_generated
