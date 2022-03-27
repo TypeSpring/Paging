@@ -14,8 +14,6 @@ public class SliceHelper {
             hasNext = true;
         }
 
-        System.out.println("hasNext: "+ hasNext);
-
         return new SliceImpl<>(content, pageable, hasNext);
     }
 }
