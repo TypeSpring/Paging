@@ -2,6 +2,7 @@ package com.example.paging.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,5 +34,12 @@ public class PostController {
         log.info("{}", pageable);
         log.info("요청한 페이지 : {}, 크기 : {}", pageable.getOffset(), pageable.getPageSize());
         return postService.getPosts(pageable);
+    }
+
+    @GetMapping("/api/v2/posts")
+    public Slice<PostDto> getPostsV2(@PageableDefault(sort = "createDate", direction = Direction.DESC) Pageable pageable) {
+        log.info("{}", pageable);
+        log.info("요청한 페이지 : {}, 크기 : {}", pageable.getOffset(), pageable.getPageSize());
+        return postService.getPostsV2(pageable);
     }
 }
