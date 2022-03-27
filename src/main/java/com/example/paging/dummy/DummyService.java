@@ -1,10 +1,6 @@
 package com.example.paging.dummy;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,8 +22,8 @@ public class DummyService {
     public void insert(int pageNum) {
         final DummyResponse response = client.getDummy(appId, pageNum, 50);
         response.getData().stream()
-                  .map(DummyDto::toPost)
-                  .forEach(post -> postRepository.save(post));
+                .map(DummyDto::toPost)
+                .forEach(post -> postRepository.save(post));
     }
 
 }
