@@ -24,9 +24,7 @@ public class DummyService {
 
     @Transactional
     public void insert(int pageNum) {
-        Pageable pageable = PageRequest.of(pageNum, 50);
-        final DummyResponse response = client.getDummy(appId, pageable);
-
+        final DummyResponse response = client.getDummy(appId, pageNum, 50);
         response.getData().stream()
                   .map(DummyDto::toPost)
                   .forEach(post -> postRepository.save(post));
