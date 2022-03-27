@@ -2,13 +2,17 @@ package com.example.paging.repository;
 
 import static com.example.paging.entity.QPost.post;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.support.PageableExecutionUtils;
 
 import com.example.paging.dto.PostDto;
 import com.example.paging.dto.QPostDto;
+import com.example.paging.util.SliceHelper;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.PathBuilder;
@@ -43,5 +47,23 @@ public class PostRepositoryImpl implements PostRepositoryCustom {
 
         return PageableExecutionUtils.getPage(query.fetch(), pageable, query::fetchCount);
 
+    }
+
+    @Override
+    public Slice<PostDto> searchV2(final Pageable pageable) {
+        final List<PostDto> contents = queryFactory.select(new QPostDto(
+                                                        post.id,
+                                                        post.thumbnail,
+                                                        post.title,
+                                                        post.contents,
+                                                        post.author,
+                                                        post.createDate,
+                                                        post.updateDate
+                                                )).from(post)
+                                                .offset(pageable.getOffset())
+                                                .limit(pageable.getPageSize() + 1)
+                                                .fetch();
+
+        return SliceHelper.getSlice(contents, pageable);
     }
 }
