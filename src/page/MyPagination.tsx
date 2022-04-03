@@ -17,10 +17,10 @@ const MyPagination: FC = () => {
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
-      await request.get(`?page=${currentPage - 1}`).then((res) => {
+      await request.get(`/v1/posts?page=${currentPage - 1}`).then((res) => {
         setList(res.data.content);
         setLoading(false);
-
+        console.log(res.data.content);
         //데이터를 받아올 때 총 페이지를 받아온다.
         setTotalPage(res.data.totalPages);
       });
@@ -32,7 +32,6 @@ const MyPagination: FC = () => {
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    console.log(currentPage);
     setCurrentPage(value);
   };
   return (
